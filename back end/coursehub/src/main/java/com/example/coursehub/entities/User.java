@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Data
 @Builder
 public class User {
