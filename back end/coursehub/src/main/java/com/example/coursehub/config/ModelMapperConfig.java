@@ -1,12 +1,13 @@
 package com.example.coursehub.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ModelMapperConfig {
     @Bean
-    public ModelMapperConfig modelMapperConfig(){
-        return new ModelMapperConfig();
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
     }
 }
