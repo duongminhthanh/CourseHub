@@ -4,6 +4,7 @@ import com.example.coursehub.dto.UserDTO;
 import com.example.coursehub.entities.User;
 import com.example.coursehub.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +13,15 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
-     public User registerUser(UserDTO userDTO){
+    private final ModelMapper modelMapper;
+     public UserDTO registerUser(UserDTO userDTO){
         User userDetail= User.builder()
                 .name(userDTO.getName())
                 .email(userDTO.getEmail())
                 .password(passwordEncoder.encode(userDTO.getPassword()))
                 .build();
-        return userRepository.save(userDetail);
+         userRepository.save(userDetail);
+
+        return modelMapper.map(userDetail,UserDTO.class);
      }
 }
